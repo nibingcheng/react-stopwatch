@@ -28,12 +28,18 @@ class Stopwatch extends Component {
     clearInterval(this.state.timerId);
   }
 
+  handleReset=()=> {
+    this.setState ({
+      counter: 0
+    })
+  }
+
   render() {
     return (
       <div className="stopwatch">
         <h1>{this.state.counter}</h1>
         <div className="controls">
-          <button>Reset</button>
+          <button onClick={this.handleReset}>Reset</button>
           <button onClick={this.handleStart}>Start</button>
           <button onClick={this.handlePause}>Pause</button>
         </div>
