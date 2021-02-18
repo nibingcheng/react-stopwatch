@@ -6,22 +6,28 @@ class Stopwatch extends Component {
     super()
 
     this.state = {
-      counter: 0
+      counter: 0,
+      timerId: null
     }
   }
     
   handleStart=()=> {
-    setInterval(this.increaseCounter, 1000);
+    this.setState({
+      timerId: setInterval(this.increaseCounter, 1000)
+    })
   }
   
   increaseCounter=()=> {
     this.setState ({
           counter: this.state.counter + 1
     })
-    // this.state.counter++;
-    console.log("hello", this.state.counter);
+    // console.log("hello", this.state.counter);
   }
-  
+
+  handlePause=()=> {
+    clearInterval(this.state.timerId);
+  }
+
   render() {
     return (
       <div className="stopwatch">
@@ -29,7 +35,7 @@ class Stopwatch extends Component {
         <div className="controls">
           <button>Reset</button>
           <button onClick={this.handleStart}>Start</button>
-          <button>Pause</button>
+          <button onClick={this.handlePause}>Pause</button>
         </div>
       </div>
     );
